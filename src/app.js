@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -12,7 +13,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 require('./routes')(app)
-
+console.log("hello:", process.env.VUE_APP_URL)
 sequelize.sync()
 .then(()=> { 
     // app.listen(process.env.PORT || 8081)
