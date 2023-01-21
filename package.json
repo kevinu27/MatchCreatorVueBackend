@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/kevinu27/MatchCreatorVueBackend#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
