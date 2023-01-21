@@ -14,6 +14,8 @@ app.use(cors())
 
 require('./routes')(app)
 console.log("hello:", process.env.VUE_APP_URL)
+
+// sequelize.sync({force: true}) con esto limpio la base de datos, peligroso si lo dejas para produccion
 sequelize.sync()
 .then(()=> { 
     // app.listen(process.env.PORT || 8081)

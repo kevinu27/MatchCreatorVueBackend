@@ -6,6 +6,6 @@ sequelize.define('User', {
         unique: true
     },
     password: DataTypes.STRING,
-    name: DataTypes.STRING,
+    // name: DataTypes.STRING,
     
 })
