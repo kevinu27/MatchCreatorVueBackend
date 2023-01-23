@@ -40,10 +40,13 @@ module.exports = {
                   error: 'The login information was incorrect'
                 })
               }
+              console.log("password", password)
+              console.log("user.password", user.password)
 
-            // const isPasswordValid = await user.comparePassword(password)
-            const isPasswordValid = password === user.password
-            
+            const isPasswordValid = user.comparePassword(password)
+            // const isPasswordValid = password === user.password
+              console.log("isPasswordValid", isPasswordValid)
+
             if(!isPasswordValid) {
                 console.log("invalid password")
                 return res.status(403).send({
