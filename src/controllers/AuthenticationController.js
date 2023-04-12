@@ -14,12 +14,30 @@ function jwtSignUser (user) {
 module.exports = {
      async  register(req,res) {   
         try {
-            const user = await User.create(req.body)
-            const userJson = user.toJSON()
-            res.send({
-              user: userJson,
-              token: jwtSignUser(userJson)
-            })
+            // const user = await User.create(req.body)
+            // const userJson = user.toJSON()
+            // res.send({
+            //   user: userJson,
+            //   token: jwtSignUser(userJson)
+            // })
+            const { email, password, username } = req.body;
+            console.log('register...', req.body)
+            console.log('dd')
+            const salt = bcrypt.genSaltSync(10);
+            console.log('salt', salt)
+            const hashedPassword = bcrypt.hashSync(password, salt);
+            console.log('email', req.body)
+            const sql = `INSERT INTO users (email, password, name) VALUES (email, password, username )`;
+            const values = [email, hashedPassword, username];
+            connection.query(sql, values, (err, result) => {
+              if (err) {
+                  console.error('Error registering user: ', err);
+                  res.status(500).send('Error registering user.');
+                  return;
+              }
+              console.log('User registered.');
+              res.send('User registered.');
+          });
           } catch (err) {
             res.status(400).send({
               error: 'This email account is already in use.'
